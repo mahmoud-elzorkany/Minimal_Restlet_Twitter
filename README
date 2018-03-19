@@ -1,0 +1,89 @@
+
+ST Hands-on: Restlet
+====================
+
+*****
+* Goal
+*****
+
+The main objective is to build a minimal Twitter-like REST API using the
+Restlet framework (ttp://restlet.com/).
+
+*****
+* Prerequisites
+*****
+
+Explore the source tree to get familiar with the architecture of the application.
+Notice, in this order,
+    - the internals
+    - the database
+    - the resources
+    - the application
+
+The compilation of the source files and the generation of the JAR files will
+be done using maven. You might need to install it beforehand. Check
+https://maven.apache.org/.
+
+Once you installed maven, open the 'pom.xml' file and notice the dependencies. To
+create the JAR file, go at the root of your project (where the pom.xml file is
+located) and run `mvn package`. The target directory should have been created.
+Notice the `uber-mta-0.0.1.jar` file. You can start the application by running
+`java -jar uber-mta-0.0.1.jar` from inside the `target` directory.
+
+Once the server starts, you can start sending requests to it, using either your
+favourite browser, or the `curl` tool:
+
+    $ curl http://localhost:8124/users
+    $ curl -X POST -H 'Content-type:application/json' -H 'Accept:application/json' -d '{"name":"peter", "age":30}' http://localhost:8124/users
+
+Check what's happening on the server side upon receiving the requests.
+
+*****
+* API
+*****
+
+The following table gives the URIs and their associated operations:
+
+URI                     | command   | description
+--------------------------------------------------------------------
+/users                  | GET       | returns the list of users
+/users                  | POST      | add a user
+/users/{userId}         | GET       | retrieve a user (and its tweets)
+/users/{userId}         | DELETE    | deletes the user
+/users/{userId}/tweets  | POST      | add a tweet to this user
+/users/{userId}/tweets  | GET       | returns the tweets of this user
+
+We will assume that the API will only use JSON
+
+*****
+* Primary roadmap
+*****
+
+* Add the Tweet class to the internals and modify the User class so as to allow
+users to have a collection of tweets.
+
+* Add the TweetsResource class to which commands for the URI
+/users/{userId}/tweets will be directed.
+
+* Modify the processing of GET requests on the URI /users/{userId} so as to
+include the list of this user's tweets in the response.
+
+*****
+* Extended roadmap
+*****
+
+* Add the support for deleting a user.
+
+* Add the support for the processing of GET requests on the
+/users/{userId}/tweets URI.
+
+* Add a /users/tweets URI which returns the set of all tweets upon receipt of a
+GET request.
+
+*****
+* In the end...
+*****
+
+Send me your code, and any information you think relevant by email before
+february 11, 2015, midnight. Include [ST-TP] in the subject of your email.
+
