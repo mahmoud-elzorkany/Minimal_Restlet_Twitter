@@ -80,10 +80,3 @@ include the list of this user's tweets in the response.
 * Add a /users/tweets URI which returns the set of all tweets upon receipt of a
 GET request.
 
-*****
-* In the end...
-*****
-
-Send me your code, and any information you think relevant by email before
-february 11, 2015, midnight. Include [ST-TP] in the subject of your email.
-
